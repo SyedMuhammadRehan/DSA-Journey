@@ -1,3 +1,5 @@
-int calculate() {
-  return 6 * 7;
-}
+import 'package:dsa/beginner_problems.dart';
+
+void main() {
+  addtwonumbers();
+  }
