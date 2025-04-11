@@ -45,3 +45,21 @@ class Solution {
     return indices; // Empty list if no solution (though problem guarantees one)
   }
 }
+
+
+//with hash map 
+//For better efficiency, here’s an O(n) solution using a hash map
+class Solution2 {
+  List<int> twoSum(List<int> nums, int target) {
+    Map<int, int> numMap = {}; // Key: number, Value: index
+    
+    for (int i = 0; i < nums.length; i++) {
+      int complement = target - nums[i];
+      if (numMap.containsKey(complement)) {
+        return [numMap[complement]!, i];
+      }
+      numMap[nums[i]] = i;
+    }
+    return []; // Empty list if no solution (though problem guarantees one)
+  }
+}
