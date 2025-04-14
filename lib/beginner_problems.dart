@@ -112,3 +112,37 @@ void main() {
   ReverseWords reverseWords = ReverseWords();
   reverseWords.reverseWordsInSentence("the sky is blue");
 }
+
+// Problem 6: Factorial Calculation
+// Description: This program calculates the factorial of a given number.
+
+void factorial(int number) {
+  if (number < 0) {
+    print("Factorial is not defined for negative numbers.");
+  } else {
+    int factorial = 1;
+    for (int i = 1; i <= number; i++) {
+      factorial *= i;
+    }
+    print("Factorial of $number is $factorial");
+  }
+}
+
+//Problem 7: Fibonacci Sequence
+// Description: This program generates the Fibonacci sequence up to a given number of terms.
+
+void fibonacci(int number) {
+
+if (number <= 0) {
+    print("Please enter a positive number.");
+  } else {
+    int a = 0, b = 1;
+    for (int i = 0; i < number; i++) {
+      print(a);
+      int temp = a;
+      a = b;
+      b = temp + b;
+    }
+  }
+
+}
