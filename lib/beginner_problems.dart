@@ -132,8 +132,7 @@ void factorial(int number) {
 // Description: This program generates the Fibonacci sequence up to a given number of terms.
 
 void fibonacci(int number) {
-
-if (number <= 0) {
+  if (number <= 0) {
     print("Please enter a positive number.");
   } else {
     int a = 0, b = 1;
@@ -144,5 +143,92 @@ if (number <= 0) {
       b = temp + b;
     }
   }
+}
 
+// Problem 8: Delete a word from a sentence
+//Takes a string (e.g., "hey hii"), a word to delete (e.g., "hii"), and a character to delete (e.g., 'y').
+
+void wordAndCharDeletion() {
+  print("Enter a string (e.g., 'hey hii'):");
+  String input = stdin.readLineSync()!;
+  print("Enter the word to delete (e.g., 'hii'):");
+  String wordToDelete = stdin.readLineSync()!;
+  print("Enter a character to delete (e.g., 'y'):");
+  String charToDelete = stdin.readLineSync()!;
+
+  // Split into words
+  List<String> words = [];
+  String currentWord = '';
+  for (int i = 0; i < input.length; i++) {
+    if (input[i] == ' ') {
+      words.add(currentWord);
+      currentWord = '';
+    } else {
+      currentWord += input[i];
+    }
+  }
+  if (currentWord.isNotEmpty) {
+    words.add(currentWord);
+  }
+
+  // Delete the word
+  String result = '';
+  for (int i = 0; i < words.length; i++) {
+    if (words[i] == wordToDelete) {
+      print("Simulating bold: **${words[i]}** (will be deleted)");
+      continue;
+    }
+    result += words[i];
+    if (i < words.length - 1 && words[i] != wordToDelete) {
+      result += ' ';
+    }
+  }
+  print("After deleting '$wordToDelete': $result");
+
+  // Delete the character
+  String finalResult = '';
+  for (int i = 0; i < result.length; i++) {
+    if (result[i] != charToDelete) {
+      finalResult += result[i];
+    }
+  }
+  print("After deleting '$charToDelete': $finalResult");
+}
+  void deleteWord(String sentence, String word, String character) {
+    List<String> words = [];
+    String currentword = '';
+
+    // Split the sentence into words
+    for (int i = 0; i < sentence.length; i++) {
+      if (sentence[i] == '') {
+        words.add(currentword);
+      } else {
+        currentword += sentence[i];
+      }
+      if (currentword.isNotEmpty) {
+        words.add(currentword);
+      }
+    }
+    // Delete the word
+    String result = '';
+    for (int i = 0; i < words.length; i++) {
+if(words[i] == word) {
+  continue;
+
+
+    }
+    
+
+    String newString = '';
+    for (int i = 0; i < sentence.length; i++) {
+      if (sentence[i] != ' ') {
+        if (sentence[i] != character) {
+          newString += sentence[i];
+        }
+      } else {
+        newString = ' ' + newString;
+      }
+    }
+    print(newString);
+  }
 }
