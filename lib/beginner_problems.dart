@@ -194,30 +194,28 @@ void wordAndCharDeletion() {
   }
   print("After deleting '$charToDelete': $finalResult");
 }
-  void deleteWord(String sentence, String word, String character) {
-    List<String> words = [];
-    String currentword = '';
 
-    // Split the sentence into words
-    for (int i = 0; i < sentence.length; i++) {
-      if (sentence[i] == '') {
-        words.add(currentword);
-      } else {
-        currentword += sentence[i];
-      }
-      if (currentword.isNotEmpty) {
-        words.add(currentword);
-      }
+void deleteWord(String sentence, String word, String character) {
+  List<String> words = [];
+  String currentword = '';
+
+  // Split the sentence into words
+  for (int i = 0; i < sentence.length; i++) {
+    if (sentence[i] == '') {
+      words.add(currentword);
+    } else {
+      currentword += sentence[i];
     }
-    // Delete the word
-    String result = '';
-    for (int i = 0; i < words.length; i++) {
-if(words[i] == word) {
-  continue;
-
-
+    if (currentword.isNotEmpty) {
+      words.add(currentword);
     }
-    
+  }
+  // Delete the word
+  String result = '';
+  for (int i = 0; i < words.length; i++) {
+    if (words[i] == word) {
+      continue;
+    }
 
     String newString = '';
     for (int i = 0; i < sentence.length; i++) {
@@ -230,5 +228,50 @@ if(words[i] == word) {
       }
     }
     print(newString);
+  }
+}
+
+// Problem 9: Is this a palindrome?
+
+// Example 1:
+
+// Input: x = 121
+// Output: true
+// Explanation: 121 reads as 121 from left to right and from right to left.
+
+class Palindrome {
+  bool isPalindrome(int x) {
+    // Check if the number is negative
+    bool isNegative = x < 0;
+
+    // Initialize a variable to store the reversed value
+    int reversedval = 0;
+
+    // Make the number positive for further processing
+    x = x.abs();
+
+    // Store the original value of x for comparison later
+    int duplicate = x;
+
+    // If the number is negative, it cannot be a palindrome
+    if (isNegative) {
+      return false;
+    }
+
+    // Reverse the digits of the number
+    while (x != 0) {
+      // Get the last digit of the number
+      int lastdigit = x % 10;
+
+      // Remove the last digit from the number
+      x = x ~/ 10;
+
+      // Add the last digit to the reversed value
+      reversedval = reversedval * 10 + lastdigit;
+    }
+
+    // Check if the reversed value is equal to the original value
+    // If they are equal, the number is a palindrome
+    return reversedval == duplicate ? true : false;
   }
 }
