@@ -35,7 +35,9 @@ int longestConsecutive(List<int> nums) {
       // Count length of sequence starting at num
       int currentNum = num;
       int currentLength = 1;
-       List<int> currentSeq = [num]; // Start the sequence with the current number
+      List<int> currentSeq = [
+        num,
+      ]; // Start the sequence with the current number
       while (true) {
         bool found = false;
         for (int x in numSet) {
@@ -57,4 +59,43 @@ int longestConsecutive(List<int> nums) {
   }
   print(maxLength);
   return maxLength;
+}
+
+//  Reverse Integer
+
+// Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+
+// Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+
+class Solution {
+  int minInt = -2147483648;
+  int maxInt = 2147483647;
+
+  int reverse(int x) {
+    bool isNegative = x < 0;
+      x = x.abs();
+    int reverseNumbers = 0;
+    while (x != 0) {
+      int extractedDigit = x % 10; // Get the last digit
+      x = x ~/ 10; // Remove the last digit
+      // Check for overflow before updating reverseNumbers
+      if (reverseNumbers > (maxInt - extractedDigit) / 10) {
+        return 0;
+      }
+
+      reverseNumbers = reverseNumbers * 10 + extractedDigit;
+    }
+
+    // Handle negative numbers
+    if (isNegative) {
+      reverseNumbers = -reverseNumbers;
+    }
+
+    // Check for overflow after final reversal
+    if (reverseNumbers > maxInt || reverseNumbers < minInt) {
+      return 0;
+    }
+
+    return reverseNumbers;
+  }
 }
