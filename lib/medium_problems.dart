@@ -73,7 +73,7 @@ class Solution {
 
   int reverse(int x) {
     bool isNegative = x < 0;
-      x = x.abs();
+    x = x.abs();
     int reverseNumbers = 0;
     while (x != 0) {
       int extractedDigit = x % 10; // Get the last digit
@@ -98,4 +98,42 @@ class Solution {
 
     return reverseNumbers;
   }
+}
+
+// Valid Anagram
+
+//Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+// Example 1:
+
+// Input: s = "rat", t = "car"
+
+// Output: false
+
+class Anagram {
+ bool isAnagram(String s, String t) {
+  if (s.length != t.length) {
+    return false;
+  }
+  if (s.isEmpty && t.isEmpty) {
+    return true;
+  }
+
+  Map<String, int> charCount = {};
+  for (int i = 0; i < s.length; i++) {
+    charCount[s[i]] = (charCount[s[i]] ?? 0) + 1;
+  }
+
+  for (int i = 0; i < t.length; i++) {
+    if (!charCount.containsKey(t[i])) {
+      return false;
+    }
+    charCount[t[i]] = charCount[t[i]]! - 1;
+    if (charCount[t[i]] == 0) {
+      charCount.remove(t[i]);
+    }
+  }
+
+  return charCount.isEmpty;
+}
 }
