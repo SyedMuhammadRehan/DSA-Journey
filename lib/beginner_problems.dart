@@ -275,3 +275,37 @@ class Palindrome {
     return reversedval == duplicate ? true : false;
   }
 }
+
+// Given an unsorted integer array nums, rearrange the array in both ascending order (smallest to largest) and descending order (largest to smallest) using only loops,
+//without built-in sorting functions.
+
+// Example 1:
+// Input: nums = [5,10,9,3,2,1]
+// Output (Ascending): [1,2,3,5,9,10]
+// Output (Descending): [10,9,5,3,2,1]
+// Explanation: The ascending order arranges numbers from smallest to largest. The descending order arranges numbers from largest to smallest.
+void rearrangeAscending(List<int> nums) {
+  for (int i = 0; i < nums.length; i++) {
+    for (int j = 0; j < nums.length - i - 1; j++) {
+      if (nums[j] > nums[j + 1]) {
+        // Swap
+        int temp = nums[j];
+        nums[j] = nums[j + 1];
+        nums[j + 1] = temp;
+      }
+    }
+  }
+}
+
+void rearrangeDescending(List<int> nums) {
+  for (int i = 0; i < nums.length; i++) {
+    for (int j = 0; j < nums.length - i - 1; j++) {
+      if (nums[j] < nums[j + 1]) {
+        // Swap
+        int temp = nums[j];
+        nums[j] = nums[j + 1];
+        nums[j + 1] = temp;
+      }
+    }
+  }
+}
