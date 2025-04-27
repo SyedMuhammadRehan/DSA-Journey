@@ -111,29 +111,56 @@ class Solution {
 // Output: false
 
 class Anagram {
- bool isAnagram(String s, String t) {
-  if (s.length != t.length) {
-    return false;
-  }
-  if (s.isEmpty && t.isEmpty) {
-    return true;
-  }
-
-  Map<String, int> charCount = {};
-  for (int i = 0; i < s.length; i++) {
-    charCount[s[i]] = (charCount[s[i]] ?? 0) + 1;
-  }
-
-  for (int i = 0; i < t.length; i++) {
-    if (!charCount.containsKey(t[i])) {
+  bool isAnagram(String s, String t) {
+    if (s.length != t.length) {
       return false;
     }
-    charCount[t[i]] = charCount[t[i]]! - 1;
-    if (charCount[t[i]] == 0) {
-      charCount.remove(t[i]);
+    if (s.isEmpty && t.isEmpty) {
+      return true;
+    }
+
+    Map<String, int> charCount = {};
+    for (int i = 0; i < s.length; i++) {
+      charCount[s[i]] = (charCount[s[i]] ?? 0) + 1;
+    }
+
+    for (int i = 0; i < t.length; i++) {
+      if (!charCount.containsKey(t[i])) {
+        return false;
+      }
+      charCount[t[i]] = charCount[t[i]]! - 1;
+      if (charCount[t[i]] == 0) {
+        charCount.remove(t[i]);
+      }
+    }
+
+    return charCount.isEmpty;
+  }
+}
+
+// Given a sorted integer array nums, remove duplicates in-place such that each unique element appears only once. The relative order of elements should be preserved, and the result should be placed in the first part of the array. Return the number of unique elements (k), and ensure the first k elements of nums contain the unique elements in their original order. Do not use extra space or built-in functions; rely only on loops.
+
+// You must implement an algorithm that runs in O(n) time and uses O(1) auxiliary space.
+
+// Example 1:
+// Input: nums = [1,1,2]
+// Output: k = 2, nums = [1,2,_]
+// Explanation: The first 2 elements are unique ([1,2]). The remaining elements (denoted _) are not considered. Return k = 2.
+
+int removeDuplicates(List<int> nums) {
+  // Handle empty or single-element array
+  if (nums.isEmpty) return 0;
+  if (nums.length == 1) return 1;
+
+  // Use a pointer to track position for next unique element
+  int uniquePos = 1;
+  for (int i = 1; i < nums.length; i++) {
+    // If current element differs from previous, it's unique
+    if (nums[i] != nums[i - 1]) {
+      nums[uniquePos] = nums[i];
+      uniquePos++;
     }
   }
-
-  return charCount.isEmpty;
-}
+  print(uniquePos);
+  return uniquePos;
 }
