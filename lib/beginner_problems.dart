@@ -309,3 +309,35 @@ void rearrangeDescending(List<int> nums) {
     }
   }
 }
+
+//Valid Palindrome
+//Example 1:
+
+// Input: s = "A man, a plan, a canal: Panama"
+// Output: true
+// Explanation: "amanaplanacanalpanama" is a palindrome.
+
+  bool isPalindrome(String s) {
+    String cleanString = '';
+    for (int i = 0; i < s.length; i++) {
+      if (isAlphanumeric(s[i])) {
+        cleanString += s[i].toLowerCase(); // Convert to lowercase
+      }
+    }
+
+    int start = 0;
+    int end = cleanString.length - 1;
+
+    while (start < end) {
+      if (cleanString[start] != cleanString[end]) {
+        return false;
+      }
+      start++;
+      end--;
+    }
+    return true;
+  }
+
+  bool isAlphanumeric(String c) {
+    return RegExp(r'[a-zA-Z0-9]').hasMatch(c);
+  }
