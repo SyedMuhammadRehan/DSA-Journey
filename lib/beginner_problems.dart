@@ -1,9 +1,18 @@
-//Problem 1: Add Two Numbers
-// Description: This program prompts the user to input two integers and calculates their sum.
-//It introduces variables, user input, and basic arithmetic operations, which are critical for manipulating data in DSA problems.
 import 'dart:io';
 
-addtwonumbers() {
+// ============================================================================
+// Beginner Problems Collection
+// Problems that introduce fundamental programming concepts and basic algorithms
+// ============================================================================
+
+// ============================================================================
+// Problem 1: Add Two Numbers
+// Description: This program prompts the user to input two integers and calculates their sum.
+// It introduces variables, user input, and basic arithmetic operations, which are critical for manipulating data in DSA problems.
+// Example: Input: 5, 3 -> Output: The sum of 5 and 3 is 8
+// ============================================================================
+
+void addTwoNumbers() {
   print("Enter first number:");
   var firstNumber = int.parse(stdin.readLineSync()!);
   print("Enter second number:");
@@ -13,18 +22,14 @@ addtwonumbers() {
   );
 }
 
-//Problem 3: Two Sum
+// ============================================================================
+// Problem 2: Two Sum (Basic O(n²) approach)
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
-
-// You can return the answer in any order.
-
-// Example 1:
-
-// Input: nums = [2,7,11,15], target = 9
-// Output: [0,1]
+// This is the basic approach with O(n²) time complexity - good for learning nested loops.
+// Example: Input: nums = [2,7,11,15], target = 9 -> Output: [0,1]
 // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+// ============================================================================
 
 class Solution {
   List<int> twoSum(List<int> nums, int target) {
@@ -43,28 +48,12 @@ class Solution {
   }
 }
 
-//with hash map
-//For better efficiency, here’s an O(n) solution using a hash map
-class Solution2 {
-  List<int> twoSum(List<int> nums, int target) {
-    Map<int, int> numMap = {}; // Key: number, Value: index
-
-    for (int i = 0; i < nums.length; i++) {
-      int complement = target - nums[i];
-      if (numMap.containsKey(complement)) {
-        return [numMap[complement]!, i];
-      }
-      numMap[nums[i]] = i;
-    }
-    return []; // Empty list if no solution (though problem guarantees one)
-  }
-}
-
-//Problem 4: Reverse String
-// Given an input string, reverse the string word by word.
-// Example 1:
-// Input: "the sky is blue"
-// Output: "blue is sky the"
+// ============================================================================
+// Problem 3: Reverse String
+// Given an input string, reverse the entire string character by character.
+// This introduces string manipulation and basic iteration concepts.
+// Example: Input: "hello" -> Output: "olleh"
+// ============================================================================
 
 class ReverseString {
   String reverseString(String s) {
@@ -77,8 +66,13 @@ class ReverseString {
     return result;
   }
 }
-// Problem 5: Reverse Words in a Sentence
-// Description: This program takes an input string and reverses the order of the words in the sentence.
+
+// ============================================================================
+// Problem 4: Reverse Words in a Sentence
+// This program takes an input string and reverses the order of the words in the sentence.
+// Introduces string parsing and word manipulation concepts.
+// Example: Input: "the sky is blue" -> Output: "blue is sky the"
+// ============================================================================
 
 class ReverseWords {
   String reverseWordsInSentence(String sentence) {
@@ -108,13 +102,12 @@ class ReverseWords {
   }
 }
 
-void main() {
-  ReverseWords reverseWords = ReverseWords();
-  reverseWords.reverseWordsInSentence("the sky is blue");
-}
-
-// Problem 6: Factorial Calculation
-// Description: This program calculates the factorial of a given number.
+// ============================================================================
+// Problem 5: Factorial Calculation
+// This program calculates the factorial of a given number using iteration.
+// Introduces loops and mathematical computations.
+// Example: Input: 5 -> Output: Factorial of 5 is 120
+// ============================================================================
 
 void factorial(int number) {
   if (number < 0) {
@@ -128,8 +121,12 @@ void factorial(int number) {
   }
 }
 
-//Problem 7: Fibonacci Sequence
-// Description: This program generates the Fibonacci sequence up to a given number of terms.
+// ============================================================================
+// Problem 6: Fibonacci Sequence
+// This program generates the Fibonacci sequence up to a given number of terms.
+// Introduces sequence generation and iterative patterns.
+// Example: Input: 8 -> Output: 0, 1, 1, 2, 3, 5, 8, 13
+// ============================================================================
 
 void fibonacci(int number) {
   if (number <= 0) {
@@ -145,8 +142,12 @@ void fibonacci(int number) {
   }
 }
 
-// Problem 8: Delete a word from a sentence
-//Takes a string (e.g., "hey hii"), a word to delete (e.g., "hii"), and a character to delete (e.g., 'y').
+// ============================================================================
+// Problem 7: Word and Character Deletion
+// Takes a string, a word to delete, and a character to delete.
+// Introduces string processing, list manipulation, and conditional logic.
+// Example: Input: "hey hii", "hii", "y" -> Output: "he hi" (after deleting "hii" and "y")
+// ============================================================================
 
 void wordAndCharDeletion() {
   print("Enter a string (e.g., 'hey hii'):");
@@ -195,57 +196,30 @@ void wordAndCharDeletion() {
   print("After deleting '$charToDelete': $finalResult");
 }
 
-void deleteWord(String sentence, String word, String character) {
-  List<String> words = [];
-  String currentword = '';
-
-  // Split the sentence into words
-  for (int i = 0; i < sentence.length; i++) {
-    if (sentence[i] == '') {
-      words.add(currentword);
-    } else {
-      currentword += sentence[i];
-    }
-    if (currentword.isNotEmpty) {
-      words.add(currentword);
-    }
-  }
-  // Delete the word
-  String result = '';
-  for (int i = 0; i < words.length; i++) {
-    if (words[i] == word) {
-      continue;
-    }
-
-    String newString = '';
-    for (int i = 0; i < sentence.length; i++) {
-      if (sentence[i] != ' ') {
-        if (sentence[i] != character) {
-          newString += sentence[i];
-        }
-      } else {
-        newString = ' ' + newString;
-      }
-    }
-    print(newString);
-  }
-}
-
-// Problem 9: Is this a palindrome?
-
-// Example 1:
-
-// Input: x = 121
-// Output: true
-// Explanation: 121 reads as 121 from left to right and from right to left.
+// ============================================================================
+// Problem 8: Palindrome Checker
+// Check if a given input (string or number) reads the same forwards and backwards.
+// Introduces string/number reversal algorithms and comparison logic.
+// Example 1: Input: "radar" -> Output: true
+// Example 2: Input: 121 -> Output: true
+// ============================================================================
 
 class Palindrome {
-  bool isPalindrome(int x) {
+  bool isPalindromeString(String value) {
+    String duplicate = value;
+    String reverse = '';
+    for (int i = value.length - 1; i >= 0; i--) {
+      reverse += value[i];
+    }
+    return reverse == duplicate;
+  }
+
+  bool isPalindromeNumber(int x) {
     // Check if the number is negative
     bool isNegative = x < 0;
 
     // Initialize a variable to store the reversed value
-    int reversedval = 0;
+    int reversedVal = 0;
 
     // Make the number positive for further processing
     x = x.abs();
@@ -261,17 +235,90 @@ class Palindrome {
     // Reverse the digits of the number
     while (x != 0) {
       // Get the last digit of the number
-      int lastdigit = x % 10;
+      int lastDigit = x % 10;
 
       // Remove the last digit from the number
       x = x ~/ 10;
 
       // Add the last digit to the reversed value
-      reversedval = reversedval * 10 + lastdigit;
+      reversedVal = reversedVal * 10 + lastDigit;
     }
 
     // Check if the reversed value is equal to the original value
     // If they are equal, the number is a palindrome
-    return reversedval == duplicate ? true : false;
+    return reversedVal == duplicate;
   }
 }
+
+// ============================================================================
+// Problem 9: Rotate Array (In-place)
+// Problem statement: Given array nums and an integer k, rotate the array to the right by k steps
+// (i.e., every element moves k positions to the right, wrap-around). Do this in-place with O(1) extra space.
+// This introduces array manipulation and the reverse algorithm technique.
+// Example: Input: nums = [1,2,3,4,5,6,7], k = 3 -> Output: [5,6,7,1,2,3,4]
+// Constraints: 1 <= nums.length <= 10^5, 0 <= k <= 10^9
+// ============================================================================
+
+void rotate(List<int> array, int k) {
+  int numElements = array.length;
+  k = k % numElements; // Handle cases where k > array length
+
+  // Reverse the entire array
+  reverseArray(array, 0, numElements - 1);
+
+  // Reverse the first k elements
+  reverseArray(array, 0, k - 1);
+
+  // Reverse the remaining elements
+  reverseArray(array, k, numElements - 1);
+
+  print(array);
+}
+
+void reverseArray(List<int> array, int start, int end) {
+  int i = start;
+  int j = end;
+  while (i < j) {
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+    i++;
+    j--;
+  }
+}
+
+
+
+
+
+
+//Find all missing numbers
+//nums = [4, 3, 2, 7, 8, 2, 3, 1]   // n = 8
+// allMissingNumbers(List<int> array){
+//   List<int> missing=[];
+// for(int i=0; i<array.length; i++){
+
+// int val= array[i]<0? -array[i]: array[i];
+
+// int idx= val-1;
+
+// if(idx>=0 && idx<array.length){
+//   if(array[idx]>0){
+// array[i]=-array[idx];
+//   }
+// }
+// for(int i=0; i<array.length; i++){
+
+//   if(array[i]>0){
+
+
+//     missing.add(i+1);
+//   }
+// }
+
+// }
+
+
+
+// return missing;
+// }
